@@ -1,0 +1,29 @@
+function saveTask() {
+    const id = document.getElementById('task-id').value;
+    const title = document.getElementById('task-title').value;
+    const description = document.getElementById('task-desc').value;
+    const priority = document.getElementById('task-priority').value;
+    const dueDate = document.getElementById('task-due-date').value;
+    const completed = false;
+
+    if (id) {
+        // Update existing task
+        const taskIndex = tasks.findIndex(task => task.id === id);
+        if (taskIndex !== -1) {
+            tasks[taskIndex] = { id, title, description, priority, dueDate, completed };
+        }
+    } else {
+        // Add new task
+        const newTask = { id: Date.now().toString(), title, description, priority, dueDate, completed };
+        tasks.push(newTask);
+    }
+
+    // Save tasks to local storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    // Render updated task list
+    renderTasks();
+
+    // Close modal after saving
+    closeModalFunction();
+}

@@ -1,0 +1,15 @@
+// Function to add new task
+const addTask = (title, description, priority, dueDate) => {
+    console.log('Adding task:', title, description, priority, dueDate); // Debug statement
+    const newTask = {
+        title,
+        description,
+        priority,
+        dueDate,
+        completed: false
+    };
+    tasks.push(newTask);
+    saveTasks();
+    displayTasks();
+    taskForm.reset();
+};
